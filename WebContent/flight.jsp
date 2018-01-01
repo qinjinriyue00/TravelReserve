@@ -13,23 +13,14 @@
 </head>
 <body>
 <h1>预订航班</h1>
-<form action="search">
-航班号<input type="text" name="flightNum">
-价格<input type="text" name="price1">-<input type="text" name="price2"></br>
+<form action="searchFlight">
 出发城市<input type="text" name="fromCity">
 到达城市<input type="text" name="arivCity">
 <input type="submit" value="搜索">
 </form></br></br>
-
-<%!
-String url="jdbc:mysql://127.0.0.1:3306/TravelReserve";
-String DBUser="root";
-String DBPassword="123";
-FlightDao flightDao=new FlightDao(url,DBUser,DBPassword);
- %>
  
  <%
- List<Flight> list=flightDao.query();
+ List<Flight> list= (List<Flight>)request.getAttribute("list");
  %>
  
  <table border="1">

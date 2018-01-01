@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class ConsumerDao extends BaseDao{
 
 	@Override
-	Object query(Object obj) throws SQLException {
+	Object query() throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

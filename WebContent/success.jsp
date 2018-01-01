@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>menu</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-<a href="search/searchFlight">预定航班</a> | <a href="car.jsp">预定出租车</a> | <a href="hotel.jsp">预订宾馆</a><br>
-<a href="reserve.jsp">预订信息</a>
-
+预订成功
 </body>
 </html>

@@ -66,7 +66,7 @@ public abstract class BaseDao {
 		return true;
 	}
 
-	abstract Object query(Object obj) throws SQLException;
+	abstract Object query() throws SQLException;
 
 	abstract boolean insert(Object obj) throws SQLException;
 

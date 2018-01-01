@@ -56,4 +56,10 @@
 		
     </package>
     
+    <package name="search" namespace="/search" extends="struts-default">
+    	<action name="searchFlight" class="travel.ustc.action.FlightAction">
+    		<result>/flight.jsp</result>
+    	</action>
+    </package>
+    
 </struts>
