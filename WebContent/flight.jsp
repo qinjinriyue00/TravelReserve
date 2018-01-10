@@ -31,6 +31,7 @@
  	<th>NumAvail</th>
  	<th>FromCity</th>
  	<th>ArivCity</th>
+ 	<th>预订</th>
  </tr>
  <% for(Flight flight : list){%>
  <tr>
@@ -40,6 +41,7 @@
  	<td><% out.println(flight.getNumAvail()); %></td>
  	<td><% out.println(flight.getFromCity()); %></td>
  	<td><% out.println(flight.getArivCity()); %></td>
+ 	<td><a href="/TravelReserve/reserve/reserveFlight?resvType=1&resvKey=<%= flight.getFlightNum() %>">预订</a>
  </tr>
  <% } %>
  </table>

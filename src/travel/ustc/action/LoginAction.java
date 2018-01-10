@@ -1,5 +1,10 @@
 package travel.ustc.action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import travel.ustc.bean.Consumer;
 
 public class LoginAction {
@@ -37,6 +42,9 @@ public class LoginAction {
 		System.out.println("Start to handleLogin()...");
 		this.consumer=new Consumer(username,password);
 		if(consumer.getCustName().equals("Xiaoming")&&consumer.getPassword().equals("123")){
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpSession session=request.getSession();
+			session.setAttribute("custName", consumer.getCustName());
 			return "success";
 		}else{
 			return "fail";

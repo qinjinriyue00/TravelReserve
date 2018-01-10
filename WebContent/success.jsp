@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-预订成功
+<h1>预订成功</h1>
+<%
+	String custName=(String)session.getAttribute("custName");
+	int resvType=(Integer)request.getAttribute("resvType"); 
+	String resvKey=(String)request.getAttribute("resvKey");
+%>
+
+客户姓名：<% out.println(custName); %><br>
+预订类型：<% out.println(resvType); %><br>
+预订关键字：<% out.println(resvKey); %>
+
 </body>
 </html>

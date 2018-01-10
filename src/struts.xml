@@ -62,4 +62,10 @@
     	</action>
     </package>
     
+     <package name="reserve" namespace="/reserve" extends="struts-default">
+    	<action name="reserveFlight" class="travel.ustc.action.ReserveAction">
+    		<result>/success.jsp</result>
+    	</action>
+    </package>
+    
 </struts>
