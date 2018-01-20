@@ -12,10 +12,6 @@ import travel.ustc.dao.FlightDao;
 
 public class FlightAction {
 
-	private String url = "jdbc:mysql://127.0.0.1:3306/TravelReserve";
-	private String DBUser = "root";
-	private String DBPassword = "123";
-
 	private String fromCity;
 	private String arivCity;
 	private List<Flight> list;
@@ -49,7 +45,7 @@ public class FlightAction {
 	}
 
 	public String execute() throws SQLException {
-		FlightDao flightDao = new FlightDao(url, DBUser, DBPassword);
+		FlightDao flightDao = new FlightDao();
 		if (fromCity != null && arivCity != null) {
 			list = flightDao.query(fromCity, arivCity);
 		} else {

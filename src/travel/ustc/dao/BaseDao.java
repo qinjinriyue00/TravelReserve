@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public abstract class BaseDao {
 
 	//protected DriverManager driver;
-	protected String url;
-	protected String DBUser;
-	protected String DBPassword;
+	private final String url = "jdbc:mysql://127.0.0.1:3306/TravelReserve?characterEncoding=utf8";
+	private final String DBUser = "root";
+	private final String DBPassword = "123";
 
 	private static Connection conn = null;
 	
@@ -17,30 +17,7 @@ public abstract class BaseDao {
 		
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	public String getDBUser() {
-		return DBUser;
-	}
-
-	public void setDBUser(String dBUser) {
-		DBUser = dBUser;
-	}
-
-	public String getDBPassword() {
-		return DBPassword;
-	}
-
-	public void setDBPassword(String dBPassword) {
-		DBPassword = dBPassword;
-	}
-
+	
 	public Connection openDBConnection() {
 
 		try {

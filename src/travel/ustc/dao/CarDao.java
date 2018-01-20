@@ -12,10 +12,8 @@ import travel.ustc.bean.Car;
 
 public class CarDao extends BaseDao{
 	
-	public CarDao(String url,String DBUser,String DBPassword){
-		this.url=url;
-		this.DBUser=DBUser;
-		this.DBPassword=DBPassword;
+	public CarDao(){
+		super();
 	}
 
 	@Override
@@ -92,6 +90,18 @@ public class CarDao extends BaseDao{
 		conn.close();
 		return flag;
 	}
+	
+	public boolean updateNumAvail(String key,int numAvail) throws SQLException{
+		Connection conn=openDBConnection();
+		String sql="update car set numAvail=? where type=?";
+		PreparedStatement pState=conn.prepareStatement(sql);
+		pState.setInt(1,numAvail);
+		pState.setString(2, key);
+		int flag=pState.executeUpdate();
+		if(flag>0) return true;
+		else return false;
+	}
+
 
 	@Override
 	public boolean delete(Object obj) throws SQLException {//delete car information

@@ -34,7 +34,7 @@
 	<td><% out.println(car.getPrice()); %></td>
 	<td><% out.println(car.getNumCars()); %></td>
 	<td><% out.println(car.getNumAvail()); %></td>
-	<td><a href="/TravelReserve/reserve/reserveCar?resvType=3&resvKey=<%=car.getType() %>">预订</a></td>
+	<td><a href="/TravelReserve/reserve/reserveCar?resvType=3&resvKey=<%=car.getType() %>&numAvail=<%=car.getNumAvail()%>">预订</a></td>
 </tr>
 <% } %>
 

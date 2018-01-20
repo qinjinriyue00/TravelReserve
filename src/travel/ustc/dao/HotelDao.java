@@ -12,10 +12,8 @@ import travel.ustc.bean.Hotel;
 
 public class HotelDao extends BaseDao {
 
-	public HotelDao(String url, String DBUser, String DBPassword) {
-		this.url = url;
-		this.DBUser = DBUser;
-		this.DBPassword = DBPassword;
+	public HotelDao() {
+		super();
 	}
 
 	@Override
@@ -97,6 +95,17 @@ public class HotelDao extends BaseDao {
 		boolean flag = ptmt.execute();
 		conn.close();
 		return flag;
+	}
+	
+	public boolean updateNumAvail(String key,int numAvail) throws SQLException{
+		Connection conn=openDBConnection();
+		String sql="update hotel set numAvail=? where hotelName=?";
+		PreparedStatement pState=conn.prepareStatement(sql);
+		pState.setInt(1,numAvail);
+		pState.setString(2, key);
+		int flag=pState.executeUpdate();
+		if(flag>0) return true;
+		else return false;
 	}
 
 	@Override

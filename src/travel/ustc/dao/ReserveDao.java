@@ -11,11 +11,8 @@ import travel.ustc.bean.Reserve;
 
 public class ReserveDao extends BaseDao {
 
-	public ReserveDao(String url, String dBUser, String dBPassword) {
+	public ReserveDao() {
 		super();
-		this.url = url;
-		this.DBUser = dBUser;
-		this.DBPassword = dBPassword;
 	}
 	
 	@Override

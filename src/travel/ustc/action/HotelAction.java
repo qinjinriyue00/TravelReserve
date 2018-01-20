@@ -15,10 +15,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class HotelAction extends ActionSupport {
 	
-	private String url = "jdbc:mysql://127.0.0.1:3306/TravelReserve?characterEncoding=utf8";
-	private String DBUser = "root";
-	private String DBPassword = "123";
-	
 	private String location;
 
 	public String getLocation() {
@@ -30,7 +26,7 @@ public class HotelAction extends ActionSupport {
 	}
 	
 	public String execute() throws SQLException, UnsupportedEncodingException{
-		HotelDao hotelDao=new HotelDao(url,DBUser,DBPassword);
+		HotelDao hotelDao=new HotelDao();
 		List<Hotel> hotelInfo=null;
 		if(location!=null){
 			System.out.println("location:"+new String(location.getBytes("ISO-8859-1"),"utf-8"));

@@ -11,11 +11,8 @@ import travel.ustc.bean.Flight;
 
 public class FlightDao extends BaseDao {
 
-	public FlightDao(String url, String dBUser, String dBPassword) {
+	public FlightDao() {
 		super();
-		this.url = url;
-		this.DBUser = dBUser;
-		this.DBPassword = dBPassword;
 	}
 
 	@Override
@@ -57,21 +54,57 @@ public class FlightDao extends BaseDao {
 	}
 
 	@Override
-	public boolean insert(Object obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insert(Object obj) throws SQLException { //insert car information
+		Flight flight=(Flight)obj;
+		Connection conn= openDBConnection();
+		String sql="insert into flight (flightNum,price,numSeats,numAvail,fromCity,arivCity)values (?,?,?,?,?,?)";
+		PreparedStatement ptmt=conn.prepareStatement(sql);
+		ptmt.setString(1,flight.getFlightNum());
+		ptmt.setInt(2,flight.getPrice());
+		ptmt.setInt(3,flight.getNumSeats());
+		ptmt.setInt(4,flight.getNumAvail());
+		ptmt.setString(5,flight.getFromCity());
+		ptmt.setString(6,flight.getArivCity());
+		boolean flag=ptmt.execute();
+		return flag;
 	}
 
 	@Override
-	public boolean update(Object obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean update(Object obj) throws SQLException {//update car information
+		Flight flight=(Flight)obj;
+		Connection conn= openDBConnection();
+		String sql="update flight set price=?,numSeats=?,numAvail=?,fromCity=?,arivCity=? where flightNum=?";
+		PreparedStatement ptmt=conn.prepareStatement(sql);
+		ptmt.setInt(1,flight.getPrice());
+		ptmt.setInt(2,flight.getNumSeats());
+		ptmt.setInt(3,flight.getNumAvail());
+		ptmt.setString(4,flight.getFromCity());
+		ptmt.setString(5,flight.getArivCity());
+		ptmt.setString(6,flight.getFlightNum());
+		boolean flag=ptmt.execute();
+		return flag;
+	}
+	
+	public boolean updateNumAvail(String key,int numAvail) throws SQLException{
+		Connection conn=openDBConnection();
+		String sql="update flight set numAvail=? where FlightNum=?";
+		PreparedStatement pState=conn.prepareStatement(sql);
+		pState.setInt(1,numAvail);
+		pState.setString(2, key);
+		int flag=pState.executeUpdate();
+		if(flag>0) return true;
+		else return false;
 	}
 
 	@Override
-	public boolean delete(Object obj) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(Object obj) throws SQLException {//delete car information
+		Flight flight=(Flight)obj;
+		Connection conn= openDBConnection();
+		String sql="delete from flight where flightNum=?";
+		PreparedStatement ptmt=conn.prepareStatement(sql);
+		ptmt.setString(1,flight.getFlightNum());
+		boolean flag=ptmt.execute();
+		return flag;
 	}
 
 }

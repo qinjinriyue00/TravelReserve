@@ -10,15 +10,21 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import travel.ustc.bean.Reserve;
-import travel.ustc.dao.ReserveDao;
+import travel.ustc.dao.*;
 
 public class ReserveAction {
 
-	private String url = "jdbc:mysql://127.0.0.1:3306/TravelReserve?characterEncoding=utf8";
-	private String DBUser = "root";
-	private String DBPassword = "123";
-
 	private int resvType;
+	private int numAvail;
+
+	public int getNumAvail() {
+		return numAvail;
+	}
+
+	public void setNumAvail(int numAvail) {
+		this.numAvail = numAvail;
+	}
+
 	private String resvKey;
 
 	public int getResvType() {
@@ -37,43 +43,53 @@ public class ReserveAction {
 		this.resvKey = resvKey;
 	}
 
-	public String execute() throws UnsupportedEncodingException {
+	public String execute() throws UnsupportedEncodingException, SQLException {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 
-		ReserveDao reserveDao = new ReserveDao(url, DBUser, DBPassword);
+		ReserveDao reserveDao = new ReserveDao();
 		Reserve reserve = new Reserve();
 		reserve.setCustName((String) session.getAttribute("custName"));
 		reserve.setResvType(resvType);
-		reserve.setResvKey(new String(resvKey.getBytes("ISO-8859-1"),"utf-8"));
-		System.out.println(new String(resvKey.getBytes("ISO-8859-1"),"utf-8"));
-		boolean flag = false;
-		try {
-			flag = reserveDao.insert(reserve);
-			System.out.println(flag);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String newResvKey=new String(resvKey.getBytes("ISO-8859-1"), "utf-8");
+		reserve.setResvKey(newResvKey);
+		boolean flag= reserveDao.insert(reserve);
+		
+		//uodate numAvail
+		switch(resvType){
+		case 1:
+			FlightDao flightDao=new FlightDao();
+			flightDao.updateNumAvail(newResvKey,numAvail-1);
+			break;
+		case 2:
+			HotelDao hotelDao =new HotelDao();
+			hotelDao.updateNumAvail(newResvKey,numAvail-1);
+			break;
+		case 3:
+			CarDao carDao=new CarDao();
+			carDao.updateNumAvail(newResvKey,numAvail-1);
+			break;
 		}
 
 		request.setAttribute("resvType", resvType);
-		request.setAttribute("resvKey", new String(resvKey.getBytes("ISO-8859-1"),"utf-8"));
-		
+		request.setAttribute("resvKey",
+				new String(resvKey.getBytes("ISO-8859-1"), "utf-8"));
+
 		if (flag) {
 			return "success";
 		} else {
 			return "false";
 		}
-
 	}
-	
-	public String search(){
+
+	public String search() {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
-		
-		ReserveDao reserveDao = new ReserveDao(url, DBUser, DBPassword);
+
+		ReserveDao reserveDao = new ReserveDao();
 		try {
-			List<Reserve> reserveInfo=(List<Reserve>) reserveDao.query((String) session.getAttribute("custName"));
+			List<Reserve> reserveInfo = (List<Reserve>) reserveDao
+					.query((String) session.getAttribute("custName"));
 			request.setAttribute("reserveInfo", reserveInfo);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

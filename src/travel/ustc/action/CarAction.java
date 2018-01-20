@@ -12,11 +12,7 @@ import travel.ustc.bean.Car;
 import travel.ustc.dao.CarDao;
 
 public class CarAction {
-	
-	private String url = "jdbc:mysql://127.0.0.1:3306/TravelReserve?characterEncoding=utf8";
-	private String DBUser = "root";
-	private String DBPassword = "123";
-	
+
 	private String location;
 
 	public String getLocation() {
@@ -28,7 +24,7 @@ public class CarAction {
 	}
 	
 	public String execute() throws SQLException, UnsupportedEncodingException{
-		CarDao carDao=new CarDao(url,DBUser,DBPassword);
+		CarDao carDao=new CarDao();
 		List<Car> carInfo=null;
 		if(location!=null){
 			carInfo=carDao.get(new String(location.getBytes("ISO-8859-1"),"utf-8"));
