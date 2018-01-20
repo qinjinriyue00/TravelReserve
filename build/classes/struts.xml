@@ -60,11 +60,21 @@
     	<action name="searchFlight" class="travel.ustc.action.FlightAction">
     		<result>/flight.jsp</result>
     	</action>
+    	<action name="searchHotel" class="travel.ustc.action.HotelAction">
+    		<result>/hotel.jsp</result>
+    	</action>
+    	<action name="searchCar" class="travel.ustc.action.CarAction">
+    		<result>/car.jsp</result>
+    	</action>
+    	<action name="searchReserve" class="travel.ustc.action.ReserveAction" method="search">
+    		<result>/reserve.jsp</result>
+    	</action>
     </package>
     
      <package name="reserve" namespace="/reserve" extends="struts-default">
-    	<action name="reserveFlight" class="travel.ustc.action.ReserveAction">
+    	<action name="reserve*" class="travel.ustc.action.ReserveAction">
     		<result>/success.jsp</result>
+    		<result name="false">/fail.jsp</result>
     	</action>
     </package>
     

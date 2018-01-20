@@ -41,7 +41,7 @@
  	<td><% out.println(flight.getNumAvail()); %></td>
  	<td><% out.println(flight.getFromCity()); %></td>
  	<td><% out.println(flight.getArivCity()); %></td>
- 	<td><a href="/TravelReserve/reserve/reserveFlight?resvType=1&resvKey=<%= flight.getFlightNum() %>">预订</a>
+ 	<td><a href="/TravelReserve/reserve/reserveFlight?resvType=1&resvKey=<%= flight.getFlightNum() %>">预订</a></td>
  </tr>
  <% } %>
  </table>

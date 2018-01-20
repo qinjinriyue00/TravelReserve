@@ -16,7 +16,9 @@
 
 客户姓名：<% out.println(custName); %><br>
 预订类型：<% out.println(resvType); %><br>
-预订关键字：<% out.println(resvKey); %>
+预订关键字：<% out.println(resvKey); %><br>
+
+<a href="/TravelReserve/home.jsp">主页</a>
 
 </body>
 </html>

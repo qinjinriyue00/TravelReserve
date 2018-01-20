@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<a href="search/searchFlight">预定航班</a> | <a href="car.jsp">预定出租车</a> | <a href="hotel.jsp">预订宾馆</a><br>
-<a href="reserve.jsp">预订信息</a>
+<a href="search/searchFlight">预定航班</a> | <a href="search/searchCar">预定出租车</a> | <a href="search/searchHotel">预订宾馆</a><br>
+<a href="search/searchReserve">预订信息</a>
 
 </body>
 </html>
