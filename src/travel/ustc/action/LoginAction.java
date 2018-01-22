@@ -1,17 +1,23 @@
 package travel.ustc.action;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
 import travel.ustc.bean.Consumer;
+import travel.ustc.bean.Coupon;
+import travel.ustc.dao.ConsumerDao;
+import travel.ustc.dao.CouponDao;
 
 public class LoginAction {
-	
+
 	private String username;
 	private String password;
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -28,25 +34,21 @@ public class LoginAction {
 		this.password = password;
 	}
 
-	private Consumer consumer=new Consumer();
-
-	public Consumer getConsumer() {
-		return consumer;
-	}
-
-	public void setConsumer(Consumer consumer) {
-		this.consumer = consumer;
-	}
-	
-	public String handleLogin(){
+	public String handleLogin() throws SQLException {
 		System.out.println("Start to handleLogin()...");
-		this.consumer=new Consumer(username,password);
-		if(consumer.getCustName().equals("Xiaoming")&&consumer.getPassword().equals("123")){
+		Consumer consumer = new Consumer(username, password);
+		ConsumerDao consumerDao = new ConsumerDao();
+		Consumer con = consumerDao.get(consumer);
+		System.out.println("query:"+con.getCustName());
+		System.out.println("query:"+con.getPassword());
+		System.out.println("balance:"+con.getBalance());
+		if (consumer.getCustName().equals(con.getCustName())
+				&& consumer.getPassword().equals(con.getPassword())) {
 			HttpServletRequest request = ServletActionContext.getRequest();
-			HttpSession session=request.getSession();
-			session.setAttribute("custName", consumer.getCustName());
+			HttpSession session = request.getSession();
+			session.setAttribute("custName", con.getCustName());
 			return "success";
-		}else{
+		} else {
 			return "fail";
 		}
 	}

@@ -36,7 +36,7 @@ List<Hotel> list=(List<Hotel>)request.getAttribute("hotelInfo");
 	<td><% out.println(hotel.getPrice()); %></td>
 	<td><% out.println(hotel.getNumRooms()); %></td>
 	<td><% out.println(hotel.getNumAvail()); %></td>
-	<td><a href="/TravelReserve/reserve/reserveHotel?resvType=2&resvKey=<%=hotel.getHotelName() %>&numAvail=<%=hotel.getNumAvail()%>">预订</a></td>
+	<td><a href="/TravelReserve/reserve/reserveHotel?resvType=2&resvKey=<%=hotel.getHotelName() %>&numAvail=<%=hotel.getNumAvail()%>&price=<%=hotel.getPrice() %>">预订</a></td>
 </tr>
 <% } %>
 	

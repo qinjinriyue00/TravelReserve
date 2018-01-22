@@ -76,6 +76,9 @@
     		<result>/success.jsp</result>
     		<result name="false">/fail.jsp</result>
     	</action>
+    	<action name="cancel" class="travel.ustc.action.ReserveAction" method="cancel">
+    		<result>/cancel.jsp</result>
+    	</action>
     </package>
     
 </struts>

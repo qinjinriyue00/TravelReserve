@@ -25,6 +25,7 @@ public class ReserveDao extends BaseDao {
 		List<Reserve> list=new ArrayList<Reserve>();
 		while(rs.next()){
 			Reserve reserve=new Reserve();
+			reserve.setId(rs.getInt("id"));
 			reserve.setCustName(rs.getString("custName"));
 			reserve.setResvType(rs.getShort("resvType"));
 			reserve.setResvKey(rs.getString("resvKey"));
@@ -43,6 +44,7 @@ public class ReserveDao extends BaseDao {
 		List<Reserve> list=new ArrayList<Reserve>();
 		while(rs.next()){
 			Reserve reserve=new Reserve();
+			reserve.setId(rs.getInt("id"));
 			reserve.setCustName(rs.getString("custName"));
 			reserve.setResvType(rs.getShort("resvType"));
 			reserve.setResvKey(rs.getString("resvKey"));
@@ -57,7 +59,7 @@ public class ReserveDao extends BaseDao {
 		// TODO Auto-generated method stub
 		Reserve reserve=(Reserve)obj;
 		Connection conn=openDBConnection();
-		String sql="insert into Reserve values(?,?,?)";
+		String sql="insert into Reserve(custName,resvType,resvKey) values(?,?,?)";
 		PreparedStatement pState=conn.prepareStatement(sql);
 		pState.setString(1, reserve.getCustName());
 		pState.setInt(2, reserve.getResvType());
@@ -79,7 +81,16 @@ public class ReserveDao extends BaseDao {
 	@Override
 	public boolean delete(Object obj) throws SQLException {
 		// TODO Auto-generated method stub
-		return false;
+		Reserve reserve=(Reserve)obj;
+		Connection conn=openDBConnection();
+		String sql="delete from reserve where id=?";
+		PreparedStatement pState=conn.prepareStatement(sql);
+		pState.setInt(1, reserve.getId());
+		int flag=pState.executeUpdate();
+		System.out.println("ReserveDao.insert:"+flag);
+		if(flag>0)
+			return true;
+		else return false;
 	}
 
 }

@@ -69,7 +69,7 @@
 				%>
 			</td>
 			<td><a
-				href="/TravelReserve/reserve/reserveFlight?resvType=1&resvKey=<%=flight.getFlightNum()%>&numAvail=<%=flight.getNumAvail()%>">预订</a></td>
+				href="/TravelReserve/reserve/reserveFlight?resvType=1&resvKey=<%=flight.getFlightNum()%>&numAvail=<%=flight.getNumAvail()%>&price=<%=flight.getPrice() %>">预订</a></td>
 		</tr>
 		<%
 			}

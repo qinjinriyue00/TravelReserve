@@ -52,6 +52,22 @@ public class FlightDao extends BaseDao {
 		conn.close();
 		return list;
 	}
+	
+	public Flight get(Flight flight) throws SQLException{
+		Connection conn = openDBConnection();
+		String sql="select * from Flight where flightNum=?";
+		PreparedStatement pState = conn.prepareStatement(sql);
+		pState.setString(1, flight.getFlightNum());
+		ResultSet rs = pState.executeQuery();
+		Flight newFlight=null;
+		while (rs.next()) {
+			newFlight = new Flight(rs.getString("FlightNum"),
+					rs.getInt("Price"), rs.getInt("NumSeats"),
+					rs.getInt("NumAvail"), rs.getString("FromCity"),
+					rs.getString("ArivCity"));
+		}
+		return newFlight;
+	}
 
 	@Override
 	public boolean insert(Object obj) throws SQLException { //insert car information

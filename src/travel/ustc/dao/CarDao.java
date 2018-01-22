@@ -25,6 +25,7 @@ public class CarDao extends BaseDao{
 		Car c = null;
 		while(rs.next()){
 			c=new Car();
+			c.setKey1(rs.getInt("key1"));
 			c.setType(rs.getString("type"));
 			c.setLocation(rs.getString("location"));
 			c.setNumAvail(rs.getInt("numAvail"));
@@ -47,6 +48,7 @@ public class CarDao extends BaseDao{
 		Car c = null;
 		while(rs.next()){
 			c=new Car();
+			c.setKey1(rs.getInt("key1"));
 			c.setType(rs.getString("type"));
 			c.setLocation(rs.getString("location"));
 			c.setNumAvail(rs.getInt("numAvail"));
@@ -57,6 +59,20 @@ public class CarDao extends BaseDao{
 		}
 		conn.close();
 		return cars;
+	}
+	
+	public Car getCar(Car car) throws SQLException{
+		Connection conn= openDBConnection();
+		String sql="select * from car where key1=?";
+		PreparedStatement pState=conn.prepareStatement(sql);
+		pState.setInt(1, car.getKey1());
+		ResultSet rs=pState.executeQuery();
+		Car newCar=new Car();
+		while(rs.next()){
+			newCar.setKey1(rs.getInt("key1"));
+			newCar.setNumAvail(rs.getInt("numAvail"));
+		}
+		return newCar;
 	}
 	
 	@Override
@@ -91,12 +107,12 @@ public class CarDao extends BaseDao{
 		return flag;
 	}
 	
-	public boolean updateNumAvail(String key,int numAvail) throws SQLException{
+	public boolean updateNumAvail(int key,int numAvail) throws SQLException{
 		Connection conn=openDBConnection();
-		String sql="update car set numAvail=? where type=?";
+		String sql="update car set numAvail=? where key1=?";
 		PreparedStatement pState=conn.prepareStatement(sql);
 		pState.setInt(1,numAvail);
-		pState.setString(2, key);
+		pState.setInt(2, key);
 		int flag=pState.executeUpdate();
 		if(flag>0) return true;
 		else return false;

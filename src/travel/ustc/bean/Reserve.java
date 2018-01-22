@@ -6,9 +6,18 @@ public class Reserve {
 
 	}
 
+	private int id;
 	private String custName;
 	private int resvType;
 	private String resvKey;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getCustName() {
 		return custName;

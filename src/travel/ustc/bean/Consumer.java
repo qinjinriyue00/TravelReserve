@@ -4,13 +4,13 @@ public class Consumer {
 	
 	private String custName;
 	private String password;
-	private double balance;
+	private int balance;
 	
 	public Consumer(){
 		
 	}
 	
-	public Consumer(String custName, String password, double balance) {
+	public Consumer(String custName, String password, int balance) {
 		super();
 		this.custName = custName;
 		this.password = password;
@@ -35,10 +35,10 @@ public class Consumer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public double getBalance() {
+	public int getBalance() {
 		return balance;
 	}
-	public void setBalance(double balance) {
+	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 

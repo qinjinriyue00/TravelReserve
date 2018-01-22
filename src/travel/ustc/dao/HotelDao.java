@@ -62,6 +62,20 @@ public class HotelDao extends BaseDao {
 		conn.close();
 		return hotels;
 	}
+	
+	public Hotel getHotel(Hotel hotel) throws SQLException{
+		Connection conn = openDBConnection();
+		String sql="select * from hotel where hotelName=?";
+		PreparedStatement pState=conn.prepareStatement(sql);
+		pState.setString(1, hotel.getHotelName());
+		ResultSet rs=pState.executeQuery();
+		Hotel newHotel=new Hotel();
+		while(rs.next()){
+			newHotel.setHotelName(rs.getString("hotelName"));
+			newHotel.setNumAvail(rs.getInt("numAvail"));
+		}
+		return newHotel;
+	}
 
 	@Override
 	public boolean insert(Object obj) throws SQLException { // insert hotel

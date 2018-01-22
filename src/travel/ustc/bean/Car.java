@@ -1,15 +1,24 @@
 package travel.ustc.bean;
 
 public class Car {
-	
+
+	private int key1;
 	private String type;
 	private String location;
 	private int price;
 	private int numCars;
 	private int numAvail;
-	
-	public Car(){
-		
+
+	public Car() {
+
+	}
+
+	public int getKey1() {
+		return key1;
+	}
+
+	public void setKey1(int key1) {
+		this.key1 = key1;
 	}
 
 	public String getType() {
@@ -51,7 +60,5 @@ public class Car {
 	public void setNumAvail(int numAvail) {
 		this.numAvail = numAvail;
 	}
-	
-	
 
 }
